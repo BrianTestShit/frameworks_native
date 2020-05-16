@@ -574,9 +574,9 @@ void SurfaceFlinger::bootFinished()
                 mRefreshRateConfigs.getRefreshRate(RefreshRateType::PERFORMANCE);
 
         if (performanceRefreshRate && isDisplayConfigAllowed(performanceRefreshRate->configId)) {
-            setRefreshRateTo(RefreshRateType::PERFORMANCE, Scheduler::ConfigEvent::Changed);
+            setRefreshRateTo(RefreshRateType::PERFORMANCE, Scheduler::ConfigEvent::None);
         } else {
-            setRefreshRateTo(RefreshRateType::DEFAULT, Scheduler::ConfigEvent::Changed);
+            setRefreshRateTo(RefreshRateType::DEFAULT, Scheduler::ConfigEvent::None);
         }
     }));
 }
