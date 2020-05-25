@@ -60,6 +60,7 @@ cc_library {
     product_variables: {
         lineage: {
             target_surfaceflinger_fod_lib: {
+                cflags: ["-DTARGET_PROVIDES_FOD_LIB"],
                 whole_static_libs: ["%s"],
             },
         },

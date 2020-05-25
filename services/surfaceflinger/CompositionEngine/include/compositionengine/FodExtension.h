@@ -18,5 +18,12 @@
 
 #ifndef __FOD_EXTENSION__H__
 #define __FOD_EXTENSION__H__
-extern uint32_t changedFodOrder(uint32_t z, bool touched);
+
+#define FOD_LAYER_NAME "Fingerprint on display#0"
+#define FOD_TOUCHED_LAYER_NAME "Fingerprint on display.touched#0"
+
+extern uint32_t getFodZOrder(uint32_t z, bool touched);
+extern uint32_t getFodUsageBits(uint32_t usageBits, bool touched);
+
 #endif /* __FOD_EXTENSION__H__ */
+

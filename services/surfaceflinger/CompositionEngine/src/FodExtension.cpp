@@ -14,10 +14,17 @@
  * limitations under the License.
  */
 
+#ifndef TARGET_PROVIDES_FOD_LIB
 #include <compositionengine/FodExtension.h>
 
-__attribute__ ((weak))
-uint32_t changedFodOrder(uint32_t z, bool touched) {
+uint32_t getFodZOrder(uint32_t z, bool touched) {
     (void) touched;
     return z;
 }
+
+uint32_t getFodUsageBits(uint32_t usageBits, bool touched) {
+    (void) touched;
+    return usageBits;
+}
+#endif
+
