@@ -16,6 +16,7 @@
 
 #include <android-base/stringprintf.h>
 #include <compositionengine/CompositionEngine.h>
+#include <compositionengine/FodExtension.h>
 #include <compositionengine/Layer.h>
 #include <compositionengine/LayerFE.h>
 #include <compositionengine/Output.h>
@@ -335,21 +336,15 @@ void OutputLayer::writeStateToHWC(bool includeGeometry) const {
                   static_cast<int32_t>(error));
         }
 
-        int z = mState.z;
+        uint32_t z = mState.z;
         if (strstr(mLayerFE->getDebugName(), "Fingerprint on display") != nullptr) {
             ALOGE("Found fingerprint on display!");
-            z = 0x41000031;
-        } else if (strstr(mLayerFE->getDebugName(), "OPFingerprintView") != nullptr) {
-            ALOGE("Found OPFingerprintView!");
-            z = 0xbd6;
-        }
+            z = changedFodOrder(z, false);
+        } 
 
         if (strstr(mLayerFE->getDebugName(), "Fingerprint on display.touched") != nullptr) {
             ALOGE("Found fingerprint on display touched!");
-            z = 0x41000033;
-        } else if (strstr(mLayerFE->getDebugName(), "OPFingerprintViewPressed") != nullptr) {
-            ALOGE("Found OPFingerprintViewPressed!");
-            z = 0xfc8;
+            z = changedFodOrder(z, true);
         }
 
         if (auto error = hwcLayer->setZOrder(z); error != HWC2::Error::None) {
